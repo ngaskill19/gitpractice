@@ -19,7 +19,7 @@ student_major_table = db.Table(
 
 class Major(db.Model):
     id : sqlo.Mapped[int] = sqlo.mapped_column(primary_key=True)
-    name : sqlo.Mapped[str] = sqlo.mapped_column(sqla.String(20))
+    name : sqlo.Mapped[str] = sqlo.mapped_column(sqla.String(200))
     department : sqlo.Mapped[str] = sqlo.mapped_column(sqla.String(150))
     
     #relationship
@@ -51,7 +51,7 @@ class Course(db.Model):
     id : sqlo.Mapped[int] = sqlo.mapped_column(primary_key=True)
     majorid : sqlo.Mapped[int] = sqlo.mapped_column(sqla.ForeignKey(Major.id), index = True)
     coursenum : sqlo.Mapped[str] = sqlo.mapped_column(sqla.String(4), index = True)   
-    title : sqlo.Mapped[str] = sqlo.mapped_column(sqla.String(150))
+    title : sqlo.Mapped[str] = sqlo.mapped_column(sqla.String(1))
     
     #relationship between major and course
     major : sqlo.Mapped[Major] = sqlo.relationship(back_populates= 'courses')
@@ -150,7 +150,7 @@ class Enrolled(db.Model):
     enroll_date: sqlo.Mapped[Optional[datetime]] = sqlo.mapped_column(default= lambda : datetime.now(timezone.utc))
     
     #relationships
-    student_enrolled : sqlo.Mapped[Student] = sqlo.relationship(back_populates= "enrollments")
+    student_enrolled : sqlo.Mapped[Student] = sqlo.relationship(back_populates= "enrollmnts")
     course_enrolled : sqlo.Mapped[Course] = sqlo.relationship(back_populates= "roster")
     
     def __repr__(self):
