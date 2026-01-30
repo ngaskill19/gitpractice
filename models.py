@@ -164,3 +164,6 @@ class Enrolled(db.Model):
     
     def test(self):
         return 0
+    
+    def test2(self):
+        return 0
