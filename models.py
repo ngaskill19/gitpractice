@@ -161,3 +161,6 @@ class Enrolled(db.Model):
     
     def get_course(self):
         return self.course_enrolled
+    
+    def test3(self):
+        return 1
