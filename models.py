@@ -144,7 +144,7 @@ class Student(UserMixin, db.Model):
             return cur_enrollment.enroll_date
 
     
-class Enrolled(db.Model):
+class Tnrolled(db.Model):
     student_id: sqlo.Mapped[int] = sqlo.mapped_column(sqla.ForeignKey(Student.id), primary_key= True)
     course_id: sqlo.Mapped[int] = sqlo.mapped_column(sqla.ForeignKey(Course.id), primary_key= True)
     enroll_date: sqlo.Mapped[Optional[datetime]] = sqlo.mapped_column(default= lambda : datetime.now(timezone.utc))
@@ -161,3 +161,4 @@ class Enrolled(db.Model):
     
     def get_course(self):
         return self.course_enrolled
+    
